@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafique Alam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Angelina&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fcecfb;
+            overflow: hidden; /* Prevents scrollbars */
+        }
+        .name {
+            font-size: 96px; /* Double the size */
+            font-family: 'Angelina', cursive;
+            position: absolute;
+            top: 20px; /* Positioning the name at the top */
+        }
+        .datetime {
+            font-size: 72px; /* Double the size */
+            font-family: Arial, sans-serif;
+            position: absolute;
+            top: 120px; /* Positioning the datetime below the name */
+        }
+        .marquee-container {
+            position: absolute;
+            width: 100%;
+            height: calc(100% - 200px); /* Adjust height to leave space for name and datetime */
+            overflow: hidden;
+            top: 200px; /* Positioning the marquee below the name and datetime */
+        }
+        .marquee {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 24px;
+            opacity: 0.5; /* Half transparent */
+            animation: move 5s linear infinite; /* Animation for moving (2x faster) */
+        }
+        @keyframes move {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        @keyframes moveReverse {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="name">Rafique Alam</div>
+    <div class="datetime" id="datetime"></div>
+    
+    <div class="marquee-container">
+        <!-- Filled Marquee (Left to Right) -->
+        <div class="marquee" style="top: 0; animation: moveReverse 5s linear infinite;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+        <div class="marquee" style="top: 30%;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+        <div class="marquee" style="top: 60%;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+        <div class="marquee" style="top: 90%;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+        
+        <!-- Blank Marquee with Numbers -->
+        <div class="marquee" style="top: 15%;">1 2 3 4 5 6 7 8 9 0</div>
+        <div class="marquee" style="top: 45%;">1 2 3 4 5 6 7 8 9 0</div>
+        <div class="marquee" style="top: 75%;">1 2 3 4 5 6 7 8 9 0</div>
+    </div>
 
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            document.getElementById('datetime').innerText = now.toLocaleString('en-IN', options);
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to display time immediately
+    </script>
+</body>
+</html>
